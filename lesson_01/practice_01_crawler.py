@@ -20,8 +20,9 @@ class DefaultSaxHandler(object):
         if name != 'map':
             name = attrs['title']
             number = attrs['href']
-            self.provinces.append((name, attrs))
+            self.provinces.append((name, number))
     
+    #市区的名称和
     def end_element(self, name):
         pass
     
@@ -32,7 +33,7 @@ def get_provinces(url):
     #页面抓取
     content = requests.get(url).content.decode('gb2312')
     #抓感兴趣的内容，\"就是转义字符，为了用”号
-    start = content.find('<map name=\"map_86" id=\"map_86\">')
+    start = content.find('<map name=\"map_86\" id=\"map_86\">')
     end = content.find('</map>')
     #做数据切断，把需要的内容提取出来.strip把空格去掉
     content = content[start:end + len('</map>')].strip()
