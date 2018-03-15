@@ -113,6 +113,7 @@ s = 'abcdefg'
 l = list(s)
 print(l)
 """
+"""
 a = 100
 b = 200
 c = 300
@@ -143,3 +144,119 @@ for i in range(0, 100):
         print(i)
     else:
         break
+        """
+"""
+def function(arg1, arg2):
+    print(arg1, arg2)
+    return arg1+arg2
+
+r = function(1,2)
+print(type(r))
+print(r)
+
+def fun(x,y=500):
+    print('x=', x)
+    print('y=', y)
+    return x + y
+
+print(fun(100))
+print(fun( y = 100, x = 600))
+print(fun(x = 100))
+
+def func(p):
+    print('x = ', p['x'])
+    print('y = ', p['y'])
+    return p['x'] + p['y c']
+print(func({'x' : 100, 'y': 600}))
+"""
+#可变参数,* 告诉Python处理name后所有参数，把参数放到数组中去
+def func(name, *number):
+    print(type(number))
+    print(number) 
+    return 'Done'
+#tuple->元组 《=》只读数组
+func('Tome',1,2,3,4,'abc')
+func('Tome',[1,2,3,4])
+func('Tome',{'x':3,'y':4})
+
+def my_print(*args):
+    print(args)
+
+my_print(1,2,3,4,'a','b')
+
+def func(name, **kvs): #** means key/values
+    print(name)
+    print(type(kvs))
+    print(kvs)
+
+func('Tome',china = 'Beijing', uk = 'Lodon')
+
+def func(a,b,c,*,china,uk):
+    print(china,uk)
+
+func(1,2,3,china='BJ',uk='Lodon')
+
+def func(a, b, c = 0, *args, **kvs):
+    print(a, b, c)
+    print(args)
+    print(kvs)
+func(1,2)
+func(1,2,3)
+func(1,2,3,'a','b')
+func(1,2,3,'a','b',x=0,y=1)
+func(1,2,3,*('a','b'),**{'x':0,'y':1})
+
+def my_print(*args):
+    print(*args)
+
+my_print('x = ', 1, 'y = ', 2 )
+
+def my_sum(i):
+    if i < 0:
+        raise ValueError
+    elif i <= 1:
+        return i
+    else:
+        return i + my_sum(i - 1)
+print(my_sum(5))
+
+#f(n) = f(n - 1) + f(n - 2)
+def fib(n):
+    if n < 1:
+        raise ValueError
+    elif n <= 2:
+        return 1
+    else:
+        return fib(n-1) + fib(n - 2)
+
+def hanoi(n, A, B, C):
+    if n == 1:
+        print(A + '->' + B)
+    else:
+        hanoi(n - 1, A, C, B)
+        print(A + '->' + B)
+        hanoi(n - 1, C, A, B)
+        
+hanoi(4,'a','b','c')
+
+def cmp(x, y, cp = None):
+    if not cp:
+        if x > y:
+            return 1
+        elif x < y:
+            return -1
+        else:
+            return 0
+    else:
+        return cp(x,y)
+
+def my_cp(x,y):
+    if x < y:
+        return -1
+    elif x > y:
+        return 1
+    else:
+        return 0
+print(cmp(1,2))
+print(cmp(1,2,my_cp))
+print(cmp(1,2,my_cp))
